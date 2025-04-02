@@ -1,0 +1,1 @@
+export { ApicurioPageComponent } from './ApicurioPageComponent';

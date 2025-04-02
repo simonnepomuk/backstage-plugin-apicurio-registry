@@ -21,15 +21,19 @@
     "test": "backstage-cli package test",
     "clean": "backstage-cli package clean",
     "prepack": "backstage-cli package prepack",
-    "postpack": "backstage-cli package postpack"
+    "postpack": "backstage-cli package postpack",
+    "generate:api:apicurioregistry": "npx openapi-typescript ./apicurio.openapi.json -o generated/api/apicurio-registry.d.ts"
   },
   "dependencies": {
     "@backstage/core-components": "^0.16.4",
     "@backstage/core-plugin-api": "^1.10.4",
+    "@backstage/plugin-catalog-react": "^1.16.0",
     "@backstage/theme": "^0.6.4",
     "@material-ui/core": "^4.9.13",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.61",
+    "highlight.js": "^11.11.1",
+    "openapi-fetch": "^0.13.5",
     "react-use": "^17.2.4"
   },
   "peerDependencies": {
@@ -44,6 +48,7 @@
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.0.0",
     "msw": "^1.0.0",
+    "openapi-typescript": "^7.6.1",
     "react": "^16.13.1 || ^17.0.0 || ^18.0.0"
   },
   "files": [

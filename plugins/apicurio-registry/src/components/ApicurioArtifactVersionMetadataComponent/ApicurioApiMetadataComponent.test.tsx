@@ -1,10 +1,10 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { ExampleFetchComponent } from './ExampleFetchComponent';
+import { ApicurioArtifactVersionMetadataComponent } from './ApicurioArtifactVersionMetadataComponent';
 
-describe('ExampleFetchComponent', () => {
+describe('ApicurioApiMetadataComponent', () => {
   it('renders the user table', async () => {
-    render(<ExampleFetchComponent />);
+    render(<ApicurioArtifactVersionMetadataComponent artifactVersion="1.0.0" />);
 
     // Wait for the table to render
     const table = await screen.findByRole('table');

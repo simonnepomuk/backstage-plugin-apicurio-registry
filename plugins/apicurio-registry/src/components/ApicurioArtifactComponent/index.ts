@@ -1,0 +1,1 @@
+export { ApicurioArtifactComponent } from './ApicurioArtifactComponent';

@@ -1,0 +1,1 @@
+export { ApicuriosArtifactVersionList } from './ApicurioArtifactVersionListComponent';

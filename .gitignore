@@ -35,6 +35,9 @@ node_modules/
 dist
 dist-types
 
+# Generated output
+**/generated
+
 # Temporary change files created by Vim
 *.swp
 

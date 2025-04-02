@@ -18,21 +18,21 @@ import {
   EntityHasSystemsCard,
   EntityLayout,
   EntityLinksCard,
-  EntitySwitch,
   EntityOrphanWarning,
   EntityProcessingErrorsPanel,
+  EntityRelationWarning,
+  EntitySwitch,
+  hasCatalogProcessingErrors,
+  hasRelationWarnings,
   isComponentType,
   isKind,
-  hasCatalogProcessingErrors,
   isOrphan,
-  hasRelationWarnings,
-  EntityRelationWarning,
 } from '@backstage/plugin-catalog';
 import {
-  EntityUserProfileCard,
   EntityGroupProfileCard,
   EntityMembersListCard,
   EntityOwnershipCard,
+  EntityUserProfileCard,
 } from '@backstage/plugin-org';
 import { EntityTechdocsContent } from '@backstage/plugin-techdocs';
 import { EmptyState } from '@backstage/core-components';
@@ -58,6 +58,7 @@ import {
   EntityKubernetesContent,
   isKubernetesAvailable,
 } from '@backstage/plugin-kubernetes';
+import { ApicurioRegistryPage } from '@internal/plugin-apicurio-registry';
 
 const techdocsContent = (
   <EntityTechdocsContent>
@@ -290,6 +291,9 @@ const apiPage = (
           <EntityApiDefinitionCard />
         </Grid>
       </Grid>
+    </EntityLayout.Route>
+    <EntityLayout.Route path="/apicurio" title="Apicurio">
+      <ApicurioRegistryPage />
     </EntityLayout.Route>
   </EntityLayout>
 );

@@ -24,18 +24,13 @@ apiVersion: backstage.io/v1alpha1
 kind: API
 metadata:
   name: example-grpc-api
+  annotations:
+    apicur.io/registry.groupId: com.example
+    apicur.io/registry.artifactId: test
 spec:
-  type: grpc
+  type: openapi
   lifecycle: experimental
   owner: guests
   system: examples
-  definition: |
-    syntax = "proto3";
-
-    service Exampler {
-      rpc Example (ExampleMessage) returns (ExampleMessage) {};
-    }
-
-    message ExampleMessage {
-      string example = 1;
-    };
+  definition:
+    $text: http://localhost:8080/apis/registry/v3/ids/globalIds/8
