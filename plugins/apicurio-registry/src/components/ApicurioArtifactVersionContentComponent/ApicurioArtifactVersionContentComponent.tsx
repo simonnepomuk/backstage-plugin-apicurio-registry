@@ -1,4 +1,8 @@
-import { CodeSnippet } from '@backstage/core-components';
+import {
+  CodeSnippet,
+  Progress,
+  ResponseErrorPanel,
+} from '@backstage/core-components';
 import { Box } from '@material-ui/core';
 import React, { useMemo } from 'react';
 import { useApi } from '@backstage/core-plugin-api';
@@ -19,11 +23,7 @@ export function ApicurioArtifactVersionContentComponent(props: {
     error: contentError,
   } = useAsyncRetry(async () => {
     if (artifactVersion) {
-      return api.fetchVersionContent(
-        groupId,
-        artifactId,
-        artifactVersion,
-      );
+      return api.fetchVersionContent(groupId, artifactId, artifactVersion);
     }
     return null;
   }, [groupId, artifactId, artifactVersion]);
@@ -37,6 +37,13 @@ export function ApicurioArtifactVersionContentComponent(props: {
     }
     return null;
   }, [contentResponse]);
+
+  if (isContentLoading) {
+    return <Progress />;
+  } else if (contentError) {
+    return <ResponseErrorPanel error={contentError} />;
+  }
+
   return (
     <Box
       style={{
@@ -47,10 +54,10 @@ export function ApicurioArtifactVersionContentComponent(props: {
     >
       <CodeSnippet
         text={selectedContent}
-        language="YAML"
+        language="yaml"
         showLineNumbers
-        customStyle={{ height: '100%' }} // Make snippet take available height
-        // className={classes.codeSnippet} // Alternative styling
+        showCopyCodeButton
+        customStyle={{ height: '100%' }}
       />
     </Box>
   );

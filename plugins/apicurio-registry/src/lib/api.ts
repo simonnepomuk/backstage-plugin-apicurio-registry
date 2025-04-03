@@ -58,7 +58,16 @@ export class ApicurioRegistryApi {
     );
   }
 
-  async fetchVersions(groupId: string, artifactId: string) {
+  async fetchVersions(
+    groupId: string,
+    artifactId: string,
+    options: { query: { limit?: number; offset?: number } } = {
+      query: {
+        limit: 20,
+        offset: 0,
+      },
+    },
+  ) {
     const client = await this.getClient();
 
     // eslint-disable-next-line new-cap
@@ -71,6 +80,7 @@ export class ApicurioRegistryApi {
         query: {
           orderBy: 'modifiedOn',
           order: 'asc',
+          ...options.query,
         },
       },
     });

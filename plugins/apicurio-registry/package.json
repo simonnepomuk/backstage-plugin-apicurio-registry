@@ -34,7 +34,9 @@
     "@material-ui/lab": "^4.0.0-alpha.61",
     "highlight.js": "^11.11.1",
     "openapi-fetch": "^0.13.5",
-    "react-use": "^17.2.4"
+    "react-use": "^17.2.4",
+    "react-window": "^1.8.11",
+    "react-window-infinite-loader": "^1.0.10"
   },
   "peerDependencies": {
     "react": "^16.13.1 || ^17.0.0 || ^18.0.0"
@@ -47,6 +49,8 @@
     "@testing-library/jest-dom": "^6.0.0",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.0.0",
+    "@types/react-window": "^1",
+    "@types/react-window-infinite-loader": "^1",
     "msw": "^1.0.0",
     "openapi-typescript": "^7.6.1",
     "react": "^16.13.1 || ^17.0.0 || ^18.0.0"

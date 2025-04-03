@@ -1,1 +1,1 @@
-export { ApicuriosArtifactVersionList } from './ApicurioArtifactVersionListComponent';
+export { ApicurioArtifactVersionList } from './ApicurioArtifactVersionListComponent';

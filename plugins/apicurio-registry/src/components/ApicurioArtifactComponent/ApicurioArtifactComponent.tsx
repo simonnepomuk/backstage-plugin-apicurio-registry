@@ -1,19 +1,12 @@
 import React, { useMemo, useState } from 'react';
-import {
-  Box,
-  createStyles,
-  Grid,
-  makeStyles,
-  Paper,
-  Theme,
-} from '@material-ui/core';
+import { Box, createStyles, Grid, makeStyles, Paper } from '@material-ui/core';
 import { CardTab, TabbedCard } from '@backstage/core-components';
 import { ApicurioArtifactVersionMetadataComponent } from '../ApicurioArtifactVersionMetadataComponent';
-import { ApicuriosArtifactVersionList } from '../ApicurioArtifactVersionListComponent';
+import { ApicurioArtifactVersionList } from '../ApicurioArtifactVersionListComponent';
 import { SearchedVersion } from '../../lib/api';
 import { ApicurioArtifactVersionContentComponent } from '../ApicurioArtifactVersionContentComponent';
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(() =>
   createStyles({
     root: {
       flexGrow: 1,
@@ -37,7 +30,7 @@ export const ApicurioArtifactComponent = () => {
     <Paper style={{ padding: 16 }}>
       <Grid container spacing={3} className={classes.root}>
         <Grid item xs={12} sm={4} md={3}>
-          <ApicuriosArtifactVersionList onChange={setSelectedArtifactVersion} />
+          <ApicurioArtifactVersionList onSelect={setSelectedArtifactVersion} />
         </Grid>
         <Grid item xs={12} sm={8} md={9}>
           <Box
