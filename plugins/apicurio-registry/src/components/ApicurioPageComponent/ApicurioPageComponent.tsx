@@ -6,24 +6,28 @@ import {
   Page,
   SupportButton,
 } from '@backstage/core-components';
-import { ApicurioArtifactVersionMetadataComponent } from '../ApicurioArtifactVersionMetadataComponent';
 import { ApicurioArtifactRulesComponent } from '../ApicurioArtifactRulesComponent/ApicurioArtifactRulesComponent';
 import { ApicurioArtifactComponent } from '../ApicurioArtifactComponent';
+import {useApicurioMetadata} from "../../lib/hooks";
 
-export const ApicurioPageComponent = () => (
-  <Page themeId="tool">
-    <Content>
-      <ContentHeader title="Apicurio Registry Artifact">
-        <SupportButton>A description of your plugin goes here.</SupportButton>
-      </ContentHeader>
-      <Grid container spacing={3} direction="column">
-        <Grid item xs={12} md={12}>
-          <ApicurioArtifactComponent />
+export const ApicurioPageComponent = () => {
+  const { groupId, artifactId } = useApicurioMetadata();
+
+  return (
+    <Page themeId="tool">
+      <Content>
+        <ContentHeader title={`Artifact: ${groupId}/${artifactId}`}>
+          <SupportButton>A description of your plugin goes here.</SupportButton>
+        </ContentHeader>
+        <Grid container spacing={3} direction="column">
+          <Grid item xs={12} md={12}>
+            <ApicurioArtifactComponent />
+          </Grid>
+          <Grid item xs={12}>
+            <ApicurioArtifactRulesComponent />
+          </Grid>
         </Grid>
-        <Grid item xs={12}>
-          <ApicurioArtifactRulesComponent />
-        </Grid>
-      </Grid>
-    </Content>
-  </Page>
-);
+      </Content>
+    </Page>
+  );
+};
