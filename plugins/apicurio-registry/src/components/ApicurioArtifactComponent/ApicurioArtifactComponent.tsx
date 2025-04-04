@@ -29,10 +29,10 @@ export const ApicurioArtifactComponent = () => {
   return (
     <Paper style={{ padding: 16 }}>
       <Grid container spacing={3} className={classes.root}>
-        <Grid item xs={12} sm={4} md={3}>
+        <Grid item xs={12} sm={12} md={4} lg={3}>
           <ApicurioArtifactVersionList onSelect={setSelectedArtifactVersion} />
         </Grid>
-        <Grid item xs={12} sm={8} md={9}>
+        <Grid item xs={12} sm={12} md={8} lg={8}>
           <Box
             style={{
               height: '600px',
