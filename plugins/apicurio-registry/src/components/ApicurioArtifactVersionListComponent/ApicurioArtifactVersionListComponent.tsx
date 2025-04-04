@@ -49,8 +49,9 @@ export function ApicurioArtifactVersionList(props: {
     async (startIndex: number) => {
       if (isItemLoaded(startIndex)) return;
       setIsNextPageLoading(true);
+      const offset = apiVersions.length ?? 0;
       const newVersions = await api.fetchVersions(groupId, artifactId, {
-        query: { offset: apiVersions.length, limit: 20 },
+        query: { offset, limit: 10 },
       });
       setCount(newVersions?.data?.count);
       setApiVersions(prev => [...prev, ...newVersions?.data?.versions]);
@@ -58,10 +59,6 @@ export function ApicurioArtifactVersionList(props: {
     },
     [isItemLoaded, api, groupId, artifactId, apiVersions.length],
   );
-
-  useEffect(() => {
-    loadNextPage(0);
-  }, []);
 
   const selectedVersion = useMemo(
     () =>
