@@ -33,4 +33,4 @@ spec:
   owner: guests
   system: examples
   definition:
-    $text: http://localhost:8080/apis/registry/v3/ids/globalIds/8
+    $text: http://localhost:8080/apis/registry/v3/groups/com.example/artifacts/test/versions/branch=latest/content
