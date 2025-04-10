@@ -4,12 +4,13 @@ import {
   Table,
   TableColumn,
 } from '@backstage/core-components';
-import { apicurioRegistryApiRef, ArtifactRuleConfig } from '../../lib/api';
+import { apicurioRegistryApiRef } from '../../lib/api';
 import React from 'react';
 import { capitalize } from '../../lib/utils';
 import { useApi } from '@backstage/core-plugin-api';
 import { useApicurioMetadata } from '../../lib/hooks';
 import { useAsyncRetry } from 'react-use';
+import {ArtifactRuleConfig} from "../../lib/model";
 
 export const ApicurioArtifactRulesComponent = () => {
   const { groupId, artifactId } = useApicurioMetadata();

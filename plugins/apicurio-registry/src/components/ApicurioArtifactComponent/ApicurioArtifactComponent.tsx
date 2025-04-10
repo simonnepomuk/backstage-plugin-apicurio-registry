@@ -3,8 +3,8 @@ import { Box, createStyles, Grid, makeStyles, Paper } from '@material-ui/core';
 import { CardTab, TabbedCard } from '@backstage/core-components';
 import { ApicurioArtifactVersionMetadataComponent } from '../ApicurioArtifactVersionMetadataComponent';
 import { ApicurioArtifactVersionList } from '../ApicurioArtifactVersionListComponent';
-import { SearchedVersion } from '../../lib/api';
 import { ApicurioArtifactVersionContentComponent } from '../ApicurioArtifactVersionContentComponent';
+import {SearchedVersion} from "../../lib/model";
 
 const useStyles = makeStyles(() =>
   createStyles({

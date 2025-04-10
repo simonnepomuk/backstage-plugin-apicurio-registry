@@ -1,12 +1,12 @@
 import React from 'react';
 import { createDevApp } from '@backstage/dev-utils';
-import { apicurioRegistryPlugin, RegistryApiInformationComponent } from '../src/plugin';
+import {ApicurioRegistryPage, apicurioRegistryPlugin} from '../src';
 
 createDevApp()
   .registerPlugin(apicurioRegistryPlugin)
   .addPage({
-    element: <RegistryApiInformationComponent />,
+    element: <ApicurioRegistryPage />,
     title: 'Root Page',
-    path: '/apicurio-registry.d.ts',
+    path: '/apicurio-registry',
   })
   .render();

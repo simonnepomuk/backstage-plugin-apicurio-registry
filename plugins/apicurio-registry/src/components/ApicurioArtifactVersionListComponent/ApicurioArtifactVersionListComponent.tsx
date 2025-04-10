@@ -12,8 +12,9 @@ import { FixedSizeList } from 'react-window';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useApicurioMetadata } from '../../lib/hooks';
 import { useApi } from '@backstage/core-plugin-api';
-import { apicurioRegistryApiRef, SearchedVersion } from '../../lib/api';
+import { apicurioRegistryApiRef } from '../../lib/api';
 import InfiniteLoader from 'react-window-infinite-loader';
+import {SearchedVersion} from "../../lib/model";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -25,9 +26,13 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export function ApicurioArtifactVersionList(props: {
+type ApicurioArtifactVersionListProps = {
   onSelect: (version: SearchedVersion) => void;
-}) {
+};
+
+export function ApicurioArtifactVersionList(
+  props: Readonly<ApicurioArtifactVersionListProps>,
+) {
   const classes = useStyles();
   const { groupId, artifactId } = useApicurioMetadata();
   const api = useApi(apicurioRegistryApiRef);
@@ -54,7 +59,7 @@ export function ApicurioArtifactVersionList(props: {
         query: { offset, limit: 10 },
       });
       setCount(newVersions?.data?.count);
-      setApiVersions(prev => [...prev, ...newVersions?.data?.versions]);
+      setApiVersions(prev => [...prev, ...(newVersions?.data?.versions ?? [])]);
       setIsNextPageLoading(false);
     },
     [isItemLoaded, api, groupId, artifactId, apiVersions.length],

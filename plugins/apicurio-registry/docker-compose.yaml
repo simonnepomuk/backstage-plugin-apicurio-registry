@@ -6,7 +6,7 @@ services:
     depends_on:
       - ui
     environment:
-      "QUARKUS_HTTP_CORS_ORIGINS": "*"
+      "QUARKUS_HTTP_CORS_ORIGINS": "localhost:7007"
 
   ui:
     image: apicurio/apicurio-registry-ui:3.0.6

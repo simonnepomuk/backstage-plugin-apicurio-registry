@@ -1,6 +1,6 @@
 import { apicurioRegistryPlugin } from './plugin';
 
-describe('apicurio-registry.d.ts', () => {
+describe('apicurio-registry', () => {
   it('should export plugin', () => {
     expect(apicurioRegistryPlugin).toBeDefined();
   });

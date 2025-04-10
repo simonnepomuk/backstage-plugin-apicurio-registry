@@ -8,7 +8,7 @@ import {
 } from '@backstage/core-components';
 import { ApicurioArtifactRulesComponent } from '../ApicurioArtifactRulesComponent/ApicurioArtifactRulesComponent';
 import { ApicurioArtifactComponent } from '../ApicurioArtifactComponent';
-import {useApicurioMetadata} from "../../lib/hooks";
+import { useApicurioMetadata } from '../../lib/hooks';
 
 export const ApicurioPageComponent = () => {
   const { groupId, artifactId } = useApicurioMetadata();

@@ -6,19 +6,14 @@ import {
   FetchApi,
 } from '@backstage/core-plugin-api';
 
-export type ArtifactRuleConfig =
-  paths['/groups/{groupId}/artifacts/{artifactId}/rules/{ruleType}']['get']['responses'][200]['content']['application/json'];
-
-export type SearchedVersion = components['schemas']['SearchedVersion'];
-
 export const apicurioRegistryApiRef = createApiRef<ApicurioRegistryApi>({
-  id: 'plugin.apicurio-registry.service',
+  id: 'plugin.apicurio-registry.api',
 });
 
 export class ApicurioRegistryApi {
   private client: Client<paths> | undefined;
-  private discoveryApi: DiscoveryApi;
-  private fetchApi: FetchApi;
+  private readonly discoveryApi: DiscoveryApi;
+  private readonly fetchApi: FetchApi;
 
   constructor(discoveryApi: DiscoveryApi, fetchApi: FetchApi) {
     this.discoveryApi = discoveryApi;
@@ -27,13 +22,18 @@ export class ApicurioRegistryApi {
 
   async getClient() {
     if (!this.client) {
-      const proxyUrl = await this.discoveryApi.getBaseUrl('proxy');
+      const baseUrl = await this.getBaseUrl();
       this.client = createClient({
-        baseUrl: `${proxyUrl}/apicurio-registry/api/`,
+        baseUrl,
         fetch: this.fetchApi.fetch,
       });
     }
     return this.client;
+  }
+
+  private async getBaseUrl() {
+    const proxyUrl = await this.discoveryApi.getBaseUrl('proxy');
+    return `${proxyUrl}/apicurio-registry/api/`;
   }
 
   async fetchVersionContent(

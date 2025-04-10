@@ -1,6 +1,7 @@
 import React from 'react';
 import { StructuredMetadataTable } from '@backstage/core-components';
-import { SearchedVersion } from '../../lib/api';
+
+import {SearchedVersion} from "../../lib/model";
 
 export const ApicurioArtifactVersionMetadataComponent = (props: {
   artifactVersion: SearchedVersion;

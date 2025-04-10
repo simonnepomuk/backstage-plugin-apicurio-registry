@@ -11,9 +11,11 @@ import { useAsyncRetry } from 'react-use';
 import { isJsonString } from '../../lib/utils';
 import { useApicurioMetadata } from '../../lib/hooks';
 
-export function ApicurioArtifactVersionContentComponent(props: {
-  artifactVersion: string;
-}) {
+export function ApicurioArtifactVersionContentComponent(
+  props: Readonly<{
+    artifactVersion: string;
+  }>,
+) {
   const { groupId, artifactId } = useApicurioMetadata();
   const { artifactVersion } = props;
   const api = useApi(apicurioRegistryApiRef);
@@ -29,7 +31,7 @@ export function ApicurioArtifactVersionContentComponent(props: {
   }, [groupId, artifactId, artifactVersion]);
 
   const selectedContent = useMemo(() => {
-    if (contentResponse && contentResponse.data) {
+    if (contentResponse?.data) {
       if (isJsonString(contentResponse.data)) {
         return JSON.stringify(JSON.parse(contentResponse.data), null, 2);
       }
