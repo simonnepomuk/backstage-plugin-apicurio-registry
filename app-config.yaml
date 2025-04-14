@@ -5,6 +5,10 @@ app:
 organization:
   name: My Company
 
+apicurio:
+  ui:
+    baseUrl: http://localhost:8888
+
 backend:
   # Used for enabling authentication, secret is shared by all backend plugins
   # See https://backstage.io/docs/auth/service-to-service-auth for
@@ -52,9 +56,6 @@ proxy:
   endpoints:
     '/apicurio-registry/api':
       target: http://localhost:8080/apis/registry/v3
-      credentials: forward
-    '/apicurio-registry/ui':
-      target: http://localhost:8888/
       credentials: forward
 
 # Reference documentation http://backstage.io/docs/features/techdocs/configuration

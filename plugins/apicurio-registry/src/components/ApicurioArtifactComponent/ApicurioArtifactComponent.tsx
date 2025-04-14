@@ -4,7 +4,8 @@ import { CardTab, TabbedCard } from '@backstage/core-components';
 import { ApicurioArtifactVersionMetadataComponent } from '../ApicurioArtifactVersionMetadataComponent';
 import { ApicurioArtifactVersionList } from '../ApicurioArtifactVersionListComponent';
 import { ApicurioArtifactVersionContentComponent } from '../ApicurioArtifactVersionContentComponent';
-import {SearchedVersion} from "../../lib/model";
+import { SearchedVersion } from '../../lib/model';
+import {configApiRef, useApi} from '@backstage/core-plugin-api';
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -18,13 +19,14 @@ export const ApicurioArtifactComponent = () => {
   const classes = useStyles();
   const [selectedArtifactVersion, setSelectedArtifactVersion] =
     useState<SearchedVersion>(undefined);
-  const apicurioUiBaseUrl = 'http://localhost:8888'
+  const config = useApi(configApiRef);
+  const apicurioUiBaseUrl = useMemo(() => config.getOptionalString('apicurio.ui.baseUrl'), [config]);
   const apicurioUiVersionUrl = useMemo<string | undefined>(() => {
     if (!selectedArtifactVersion) {
       return undefined;
     }
     return `${apicurioUiBaseUrl}/explore/${selectedArtifactVersion.groupId}/${selectedArtifactVersion.artifactId}/versions/${selectedArtifactVersion.version}`;
-  }, [apicurioUiBaseUrl,  selectedArtifactVersion]);
+  }, [apicurioUiBaseUrl, selectedArtifactVersion]);
 
   return (
     <Paper style={{ padding: 16 }}>
