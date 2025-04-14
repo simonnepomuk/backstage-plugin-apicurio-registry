@@ -4,6 +4,7 @@ import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import { screen } from '@testing-library/react';
 import {
+  MockFetchApi,
   registerMswTestHooks,
   renderInTestApp,
   TestApiProvider,
@@ -20,7 +21,7 @@ jest.mock('../../lib/hooks', () => ({
 const mockRegistryUrl = 'http://localhost:8080';
 const mockRegistryApi = new ApicurioRegistryApi(
   { getBaseUrl: jest.fn().mockResolvedValue(mockRegistryUrl) },
-  { fetch },
+  new MockFetchApi(),
 );
 
 describe('ApicurioPageComponent', () => {
