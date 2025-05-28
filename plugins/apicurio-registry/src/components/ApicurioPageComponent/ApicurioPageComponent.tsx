@@ -17,7 +17,7 @@ export const ApicurioPageComponent = () => {
     <Page themeId="tool">
       <Content>
         <ContentHeader title={`Artifact: ${groupId}/${artifactId}`}>
-          <SupportButton>A description of your plugin goes here.</SupportButton>
+          <SupportButton>Displays Info from the Apicurio Registry inside Backstage.</SupportButton>
         </ContentHeader>
         <Grid container spacing={3} direction="column">
           <Grid item xs={12} md={12}>
