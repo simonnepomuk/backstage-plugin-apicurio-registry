@@ -9,6 +9,6 @@
     "paths": {
       "@generated/*": ["./generated/*"],
     },
-    "jsx": "react"
+    "jsx": "react-jsx"
   }
 }
