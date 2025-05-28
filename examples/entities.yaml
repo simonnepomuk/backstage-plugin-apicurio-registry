@@ -17,13 +17,13 @@ spec:
   lifecycle: experimental
   owner: guests
   system: examples
-  providesApis: [example-grpc-api]
+  providesApis: [example-api]
 ---
 # https://backstage.io/docs/features/software-catalog/descriptor-format#kind-api
 apiVersion: backstage.io/v1alpha1
 kind: API
 metadata:
-  name: example-grpc-api
+  name: example-api
   annotations:
     apicur.io/registry.groupId: com.example
     apicur.io/registry.artifactId: test
