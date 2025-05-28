@@ -5,7 +5,6 @@ import {
   TableColumn,
 } from '@backstage/core-components';
 import { apicurioRegistryApiRef } from '../../lib/api';
-import React from 'react';
 import { capitalize } from '../../lib/utils';
 import { useApi } from '@backstage/core-plugin-api';
 import { useApicurioMetadata } from '../../lib/hooks';

@@ -4,7 +4,7 @@ import {
   ResponseErrorPanel,
 } from '@backstage/core-components';
 import { Box } from '@material-ui/core';
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { useApi } from '@backstage/core-plugin-api';
 import { apicurioRegistryApiRef } from '../../lib/api';
 import { useAsyncRetry } from 'react-use';

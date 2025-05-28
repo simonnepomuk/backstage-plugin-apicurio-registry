@@ -5,6 +5,7 @@ import {
   DiscoveryApi,
   FetchApi,
 } from '@backstage/core-plugin-api';
+import { SearchedVersion } from './model';
 
 export const apicurioRegistryApiRef = createApiRef<ApicurioRegistryApi>({
   id: 'plugin.apicurio-registry.api',
@@ -61,14 +62,22 @@ export class ApicurioRegistryApi {
   async fetchVersions(
     groupId: string,
     artifactId: string,
-    options: { query: { limit?: number; offset?: number } } = {
-      query: {
-        limit: 20,
-        offset: 0,
-      },
+    options?: {
+      query?: {
+        limit?: number;
+        offset?: number;
+        orderBy?: keyof SearchedVersion;
+        order?: 'asc' | 'desc';
+      };
     },
   ) {
     const client = await this.getClient();
+    const defaultQuery = {
+      limit: 20,
+      offset: 0,
+      orderBy: 'modifiedOn',
+      order: 'asc' as const,
+    };
 
     // eslint-disable-next-line new-cap
     return client.GET('/groups/{groupId}/artifacts/{artifactId}/versions', {
@@ -78,9 +87,8 @@ export class ApicurioRegistryApi {
           artifactId,
         },
         query: {
-          orderBy: 'modifiedOn',
-          order: 'asc',
-          ...options.query,
+          ...defaultQuery,
+          ...options?.query,
         },
       },
     });

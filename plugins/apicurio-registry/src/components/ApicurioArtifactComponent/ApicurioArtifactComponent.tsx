@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Box, createStyles, Grid, makeStyles, Paper } from '@material-ui/core';
 import { CardTab, TabbedCard } from '@backstage/core-components';
 import { ApicurioArtifactVersionMetadataComponent } from '../ApicurioArtifactVersionMetadataComponent';

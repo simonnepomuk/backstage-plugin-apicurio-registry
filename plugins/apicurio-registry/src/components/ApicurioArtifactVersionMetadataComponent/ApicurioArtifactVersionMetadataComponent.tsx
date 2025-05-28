@@ -1,4 +1,3 @@
-import React from 'react';
 import { StructuredMetadataTable } from '@backstage/core-components';
 
 import {SearchedVersion} from "../../lib/model";

@@ -9,12 +9,12 @@ import {
 } from '@material-ui/core';
 import { FixedSizeList } from 'react-window';
 
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useApicurioMetadata } from '../../lib/hooks';
 import { useApi } from '@backstage/core-plugin-api';
 import { apicurioRegistryApiRef } from '../../lib/api';
 import InfiniteLoader from 'react-window-infinite-loader';
-import {SearchedVersion} from "../../lib/model";
+import { SearchedVersion } from '../../lib/model';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -55,9 +55,7 @@ export function ApicurioArtifactVersionList(
       if (isItemLoaded(startIndex)) return;
       setIsNextPageLoading(true);
       const offset = apiVersions.length ?? 0;
-      const newVersions = await api.fetchVersions(groupId, artifactId, {
-        query: { offset, limit: 10 },
-      });
+      const newVersions = await api.fetchVersions(groupId, artifactId);
       setCount(newVersions?.data?.count);
       setApiVersions(prev => [...prev, ...(newVersions?.data?.versions ?? [])]);
       setIsNextPageLoading(false);

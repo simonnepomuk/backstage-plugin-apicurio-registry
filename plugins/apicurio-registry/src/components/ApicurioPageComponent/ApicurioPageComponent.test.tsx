@@ -1,4 +1,4 @@
-import React, { act } from 'react';
+import { act } from 'react';
 import { ApicurioPageComponent } from './ApicurioPageComponent';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
