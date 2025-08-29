@@ -57,7 +57,7 @@ import {
   EntityKubernetesContent,
   isKubernetesAvailable,
 } from '@backstage/plugin-kubernetes';
-import { ApicurioRegistryPage } from '@internal/plugin-apicurio-registry';
+import { ApicurioRegistryPage } from '@simonnepomuk/backstage-plugin-apicurio-registry';
 
 const techdocsContent = (
   <EntityTechdocsContent>
