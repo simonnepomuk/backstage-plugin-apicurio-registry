@@ -12,7 +12,7 @@ To install the Apicurio Registry plugin, follow these steps:
 
    ```bash
    cd packages/app 
-   yarn add @andamp/backage-apicurio-registry-plugin
+   yarn add @simonnepomuk/backage-plugin-apicurio-registry
    ```
 
 2. Add the proxy config to your `app-config.yaml`:
@@ -35,7 +35,7 @@ To install the Apicurio Registry plugin, follow these steps:
 4. Add the Apicurio Registry Page Widget to your API entities page:
 
    ```tsx
-   import { ApicurioRegistryPage } from '@andamp/backage-apicurio-registry-plugin';
+   import { ApicurioRegistryPage } from '@simonnepomuk/backage-plugin-apicurio-registry';
    
    export const entityPage = (
      <EntityLayout>
