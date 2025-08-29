@@ -22,7 +22,7 @@
     "clean": "backstage-cli package clean",
     "prepack": "backstage-cli package prepack",
     "postpack": "backstage-cli package postpack",
-    "prepare": "npx openapi-typescript ./apicurio.openapi.json -o src/generated/api/apicurio-registry.d.ts"
+    "postinstall": "npx openapi-typescript ./apicurio.openapi.json -o src/generated/api/apicurio-registry.d.ts"
   },
   "dependencies": {
     "@backstage/core-components": "^0.17.5",
