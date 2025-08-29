@@ -5,7 +5,7 @@ import { ApicurioArtifactVersionMetadataComponent } from '../ApicurioArtifactVer
 import { ApicurioArtifactVersionList } from '../ApicurioArtifactVersionListComponent';
 import { ApicurioArtifactVersionContentComponent } from '../ApicurioArtifactVersionContentComponent';
 import { SearchedVersion } from '../../lib/model';
-import {configApiRef, useApi} from '@backstage/core-plugin-api';
+import { configApiRef, useApi } from '@backstage/core-plugin-api';
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -17,10 +17,14 @@ const useStyles = makeStyles(() =>
 
 export const ApicurioArtifactComponent = () => {
   const classes = useStyles();
-  const [selectedArtifactVersion, setSelectedArtifactVersion] =
-    useState<SearchedVersion>(undefined);
+  const [selectedArtifactVersion, setSelectedArtifactVersion] = useState<
+    SearchedVersion | undefined
+  >(undefined);
   const config = useApi(configApiRef);
-  const apicurioUiBaseUrl = useMemo(() => config.getOptionalString('apicurio.ui.baseUrl'), [config]);
+  const apicurioUiBaseUrl = useMemo(
+    () => config.getOptionalString('apicurio.ui.baseUrl'),
+    [config],
+  );
   const apicurioUiVersionUrl = useMemo<string | undefined>(() => {
     if (!selectedArtifactVersion) {
       return undefined;
@@ -43,10 +47,14 @@ export const ApicurioArtifactComponent = () => {
             }}
           >
             <TabbedCard
-              deepLink={{
-                link: apicurioUiVersionUrl,
-                title: 'View in Registry UI',
-              }}
+              deepLink={
+                apicurioUiVersionUrl
+                  ? {
+                      link: apicurioUiVersionUrl,
+                      title: 'View in Registry UI',
+                    }
+                  : undefined
+              }
               title="Details"
             >
               <CardTab label="Content">
@@ -62,9 +70,13 @@ export const ApicurioArtifactComponent = () => {
                     padding: 2,
                   }}
                 >
-                  <ApicurioArtifactVersionMetadataComponent
-                    artifactVersion={selectedArtifactVersion}
-                  />
+                  {selectedArtifactVersion ? (
+                    <ApicurioArtifactVersionMetadataComponent
+                      artifactVersion={selectedArtifactVersion}
+                    />
+                  ) : (
+                    'No version selected'
+                  )}
                 </Box>
               </CardTab>
             </TabbedCard>

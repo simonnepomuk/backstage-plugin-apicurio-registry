@@ -1,4 +1,4 @@
-import type { components, paths } from '@generated/api/apicurio-registry';
+import type { components, paths } from '../generated/api/apicurio-registry';
 
 export const annotations = {
   groupId: 'apicur.io/registry.groupId',

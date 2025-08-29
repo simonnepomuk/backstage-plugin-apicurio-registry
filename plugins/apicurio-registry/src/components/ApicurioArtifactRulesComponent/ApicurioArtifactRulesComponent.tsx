@@ -1,4 +1,5 @@
 import {
+  DismissableBanner,
   Progress,
   ResponseErrorPanel,
   Table,
@@ -9,21 +10,39 @@ import { capitalize } from '../../lib/utils';
 import { useApi } from '@backstage/core-plugin-api';
 import { useApicurioMetadata } from '../../lib/hooks';
 import { useAsyncRetry } from 'react-use';
-import {ArtifactRuleConfig} from "../../lib/model";
+import { ArtifactRuleConfig } from '../../lib/model';
+import { MissingAnnotationEmptyState } from '@backstage/plugin-catalog-react';
 
 export const ApicurioArtifactRulesComponent = () => {
   const { groupId, artifactId } = useApicurioMetadata();
   const api = useApi(apicurioRegistryApiRef);
 
-  const { value, loading, error } = useAsyncRetry(
-    async () => api.fetchArtifactRules(groupId, artifactId),
-    [],
-  );
+  const { value, loading, error } = useAsyncRetry(async () => {
+    return api.fetchArtifactRules(groupId || '', artifactId || '');
+  }, []);
+
+  if (!groupId || !artifactId) {
+    return (
+      <MissingAnnotationEmptyState
+        annotation={['apicurio.io/groupId', 'apicurio.io/artifactId']}
+      />
+    );
+  }
 
   if (loading) {
     return <Progress />;
   } else if (error) {
     return <ResponseErrorPanel error={error} />;
+  }
+
+  if (!value || value.length === 0) {
+    return (
+      <DismissableBanner
+        variant="warning"
+        message="Unable to load artifact rules"
+        id="no-artifact-rules-warning"
+      />
+    );
   }
 
   const columns: TableColumn<ArtifactRuleConfig>[] = [

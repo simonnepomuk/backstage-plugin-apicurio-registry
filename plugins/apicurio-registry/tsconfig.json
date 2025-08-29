@@ -6,9 +6,6 @@
     "moduleResolution": "Bundler",
     "noUncheckedIndexedAccess": true,
     "baseUrl": ".",
-    "paths": {
-      "@generated/*": ["./generated/*"],
-    },
     "jsx": "react-jsx"
   }
 }

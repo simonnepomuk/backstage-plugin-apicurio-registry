@@ -8,13 +8,13 @@ import {
   Typography,
 } from '@material-ui/core';
 import { FixedSizeList } from 'react-window';
-
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { ReactElement, useCallback, useEffect, useMemo, useState } from 'react';
 import { useApicurioMetadata } from '../../lib/hooks';
 import { useApi } from '@backstage/core-plugin-api';
 import { apicurioRegistryApiRef } from '../../lib/api';
 import InfiniteLoader from 'react-window-infinite-loader';
 import { SearchedVersion } from '../../lib/model';
+import { MissingAnnotationEmptyState } from '@backstage/plugin-catalog-react';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -54,13 +54,15 @@ export function ApicurioArtifactVersionList(
     async (startIndex: number) => {
       if (isItemLoaded(startIndex)) return;
       setIsNextPageLoading(true);
-      const offset = apiVersions.length ?? 0;
-      const newVersions = await api.fetchVersions(groupId, artifactId);
-      setCount(newVersions?.data?.count);
+      const newVersions = await api.fetchVersions(
+        groupId || '',
+        artifactId || '',
+      );
+      setCount(newVersions?.data?.count || 0);
       setApiVersions(prev => [...prev, ...(newVersions?.data?.versions ?? [])]);
       setIsNextPageLoading(false);
     },
-    [isItemLoaded, api, groupId, artifactId, apiVersions.length],
+    [isItemLoaded, api, groupId, artifactId],
   );
 
   const selectedVersion = useMemo(
@@ -76,18 +78,26 @@ export function ApicurioArtifactVersionList(
   }, []);
 
   useEffect(() => {
-    props.onSelect(selectedVersion);
+    if (selectedVersion) {
+      props.onSelect(selectedVersion);
+    }
   }, [selectedVersion, props]);
 
   const loadMoreItems = isNextPageLoading ? () => {} : loadNextPage;
 
   const formatSecondaryText = (version: SearchedVersion): string => {
-    const date = new Date(version?.modifiedOn);
+    const date = new Date(version.modifiedOn as string); // modifiedOn is always defined
     const formattedDate = date.toLocaleString();
     return `Modified: ${formattedDate} by ${version?.modifiedBy || 'Unknown'}`;
   };
 
-  const Item = useCallback(
+  const Item: ({
+    index,
+    style,
+  }: {
+    index: number;
+    style?: React.CSSProperties;
+  }) => ReactElement = useCallback(
     ({ index, style }) => {
       if (!isItemLoaded(index)) {
         return <div style={style}>Loading...</div>;
@@ -120,6 +130,14 @@ export function ApicurioArtifactVersionList(
       selectedIndex,
     ],
   );
+
+  if (!groupId || !artifactId) {
+    return (
+      <MissingAnnotationEmptyState
+        annotation={['apicurio.io/groupId', 'apicurio.io/artifactId']}
+      />
+    );
+  }
 
   return (
     <Box className={classes.listContainer}>

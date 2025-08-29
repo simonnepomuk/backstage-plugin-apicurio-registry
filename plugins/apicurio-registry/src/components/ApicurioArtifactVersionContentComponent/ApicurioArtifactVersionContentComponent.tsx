@@ -10,10 +10,11 @@ import { apicurioRegistryApiRef } from '../../lib/api';
 import { useAsyncRetry } from 'react-use';
 import { isJsonString } from '../../lib/utils';
 import { useApicurioMetadata } from '../../lib/hooks';
+import { MissingAnnotationEmptyState } from '@backstage/plugin-catalog-react';
 
 export function ApicurioArtifactVersionContentComponent(
   props: Readonly<{
-    artifactVersion: string;
+    artifactVersion?: string;
   }>,
 ) {
   const { groupId, artifactId } = useApicurioMetadata();
@@ -25,7 +26,7 @@ export function ApicurioArtifactVersionContentComponent(
     error: contentError,
   } = useAsyncRetry(async () => {
     if (artifactVersion) {
-      return api.fetchVersionContent(groupId, artifactId, artifactVersion);
+      return api.fetchVersionContent(groupId || '', artifactId || '', artifactVersion || '');
     }
     return null;
   }, [groupId, artifactId, artifactVersion]);
@@ -39,6 +40,14 @@ export function ApicurioArtifactVersionContentComponent(
     }
     return null;
   }, [contentResponse]);
+
+  if (!groupId || !artifactId) {
+    return (
+      <MissingAnnotationEmptyState
+        annotation={['apicurio.io/groupId', 'apicurio.io/artifactId']}
+      />
+    );
+  }
 
   if (isContentLoading) {
     return <Progress />;
@@ -55,7 +64,7 @@ export function ApicurioArtifactVersionContentComponent(
       }}
     >
       <CodeSnippet
-        text={selectedContent}
+        text={selectedContent || ''}
         language="yaml"
         showLineNumbers
         showCopyCodeButton

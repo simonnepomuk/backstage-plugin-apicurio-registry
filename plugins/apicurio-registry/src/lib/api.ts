@@ -1,5 +1,5 @@
 import createClient, { Client } from 'openapi-fetch';
-import type { components, paths } from '@generated/api/apicurio-registry';
+import type { components, paths } from '../generated/api/apicurio-registry';
 import {
   createApiRef,
   DiscoveryApi,
@@ -128,7 +128,7 @@ export class ApicurioRegistryApi {
     if (response.status === 404) {
       return 'Disabled';
     }
-    if (response.status !== 200) {
+    if (response.status !== 200 || !data) {
       return 'Unable to retrieve configuration';
     }
 
