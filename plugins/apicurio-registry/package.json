@@ -1,6 +1,6 @@
 {
   "name": "@simonnepomuk/backstage-plugin-apicurio-registry",
-  "version": "0.1.0",
+  "version": "0.1.4",
   "license": "Apache-2.0",
   "main": "dist/index.esm.js",
   "types": "dist/index.d.ts",
@@ -8,6 +8,11 @@
     "access": "public",
     "main": "dist/index.esm.js",
     "types": "dist/index.d.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/simonnepomuk/backstage-plugin-apicurio-registry.git",
+    "directory": "plugins/apicurio-registry"
   },
   "backstage": {
     "role": "frontend-plugin",
@@ -61,7 +66,8 @@
   },
   "files": [
     "dist",
-    "config.d.ts"
+    "config.d.ts",
+    "docs/**/*"
   ],
   "configSchema": "config.d.ts",
   "typesVersions": {
