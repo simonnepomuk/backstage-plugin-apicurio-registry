@@ -4,6 +4,9 @@
   "license": "Apache-2.0",
   "main": "dist/index.esm.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    "." : "./src/index.ts"
+  },
   "publishConfig": {
     "access": "public",
     "main": "dist/index.esm.js",

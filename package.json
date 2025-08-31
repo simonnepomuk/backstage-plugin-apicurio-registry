@@ -56,7 +56,9 @@
   },
   "packageManager": "yarn@4.4.1",
   "release": {
-    "branches": ["main"],
+    "branches": [
+      "main"
+    ],
     "plugins": [
       "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
