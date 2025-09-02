@@ -45,7 +45,7 @@
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.61",
     "highlight.js": "^11.11.1",
-    "openapi-fetch": "^0.13.5",
+    "openapi-fetch": "^0.14.0",
     "react-use": "^17.2.4",
     "react-window": "^1.8.11",
     "react-window-infinite-loader": "^1.0.10"
