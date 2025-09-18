@@ -9319,7 +9319,7 @@ __metadata:
     "@testing-library/jest-dom": "npm:^6.0.0"
     "@testing-library/react": "npm:^16.3.0"
     "@testing-library/user-event": "npm:^14.0.0"
-    "@types/react-window": "npm:^1"
+    "@types/react-window": "npm:^2"
     "@types/react-window-infinite-loader": "npm:^1"
     highlight.js: "npm:^11.11.1"
     msw: "npm:^1.0.0"
@@ -9327,7 +9327,7 @@ __metadata:
     openapi-typescript: "npm:^7.6.1"
     react: "npm:^16.13.1 || ^17.0.0 || ^18.0.0"
     react-use: "npm:^17.2.4"
-    react-window: "npm:^1.8.11"
+    react-window: "npm:^2.1.1"
     react-window-infinite-loader: "npm:^1.0.10"
   peerDependencies:
     react: ^16.13.1 || ^17.0.0 || ^18.0.0
@@ -11836,12 +11836,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-window@npm:*, @types/react-window@npm:^1":
+"@types/react-window@npm:*":
   version: 1.8.8
   resolution: "@types/react-window@npm:1.8.8"
   dependencies:
     "@types/react": "npm:*"
   checksum: 10c0/2170a3957752603e8b994840c5d31b72ddf94c427c0f42b0175b343cc54f50fe66161d8871e11786ec7a59906bd33861945579a3a8f745455a3744268ec1069f
+  languageName: node
+  linkType: hard
+
+"@types/react-window@npm:^2":
+  version: 2.0.0
+  resolution: "@types/react-window@npm:2.0.0"
+  dependencies:
+    react-window: "npm:*"
+  checksum: 10c0/4de05bf54c3947a68878f1ddcc019db27811d2390aae2e4eb1ab83bff134d6a2f20318555e06b891234df946528470d7c01e43dff759209ec75c54cbda034acf
   languageName: node
   linkType: hard
 
@@ -27797,7 +27806,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-window@npm:^1.8.10, react-window@npm:^1.8.11, react-window@npm:^1.8.6":
+"react-window@npm:*, react-window@npm:^2.1.1":
+  version: 2.1.1
+  resolution: "react-window@npm:2.1.1"
+  peerDependencies:
+    react: ^18.0.0 || ^19.0.0
+    react-dom: ^18.0.0 || ^19.0.0
+  checksum: 10c0/fa2ed68c8f57afea53997a3fc4b2c5b5eaf6f7e967d2e9e868eb3dfaa67f6dee7084478b0c099040379a101a287d73a4ef908ff7906c87bd91f7d123af07583b
+  languageName: node
+  linkType: hard
+
+"react-window@npm:^1.8.10, react-window@npm:^1.8.6":
   version: 1.8.11
   resolution: "react-window@npm:1.8.11"
   dependencies:
