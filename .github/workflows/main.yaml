@@ -7,7 +7,7 @@ on:
       - main
 jobs:
   build:
-    name: "Build, verify and release"
+    name: "Build and verify"
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -24,6 +24,22 @@ jobs:
       - run: yarn tsc
       - run: yarn build:all
       - run: yarn test:all
+  release:
+    name: "Release"
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    strategy:
+      matrix:
+        node-version: [ 22 ]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'yarn'
+      - run: yarn --immutable
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
